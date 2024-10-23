@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 12f;
+    private bool isPiped = false;
 
     private int doubleJump = 2;
 
@@ -13,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float jumpBufferTime = 1f;
     private float jumpBufferCounter;
-
-    private bool isWallJumping;
     
     private bool controlsEnabled = true;
 
@@ -33,14 +31,13 @@ public class PlayerMovement : MonoBehaviour
     
     public void EnableControls() {controlsEnabled = true;}
     
-    private void Update()
+    private void FixedUpdate()
     {
         if (!controlsEnabled) return;
         
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButton("Horizontal"))
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-            print("moved");
         }
 
         if (IsGrounded())
@@ -63,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            print("Jumped");
             jumpBufferCounter = jumpBufferTime;
             if (jumpBufferCounter > 0)
             {
@@ -85,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
         }
-        rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 6f, 20 * Time.deltaTime) : 4f;
+        rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 4f, 20 * Time.deltaTime) : 4f;
 
     }
 
