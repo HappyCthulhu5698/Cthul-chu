@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 12f;
-    private bool isFacingRight = true;
 
     private int doubleJump = 2;
 
@@ -38,7 +37,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!controlsEnabled) return;
         
-        horizontal = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+            print("moved");
+        }
 
         if (IsGrounded())
         {
@@ -86,26 +89,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        if (!controlsEnabled) return;
-
-        if (!isWallJumping)
-        {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        }
-    }
-
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-    private void Flip()
-    {
-        if ((!isFacingRight || !(horizontal < 0f)) && (isFacingRight || !(horizontal > 0f))) return;
-        isFacingRight = !isFacingRight;
-        var localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
     }
 }
