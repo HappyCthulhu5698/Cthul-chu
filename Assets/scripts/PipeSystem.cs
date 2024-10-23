@@ -57,7 +57,7 @@ public class PipeSystem : MonoBehaviour
 
     public IEnumerator MoveThroughPipe(GameObject player, bool startFromEnd, Vector2 entryPosition)
     {
-        if (isMoving) yield break;
+        if (isMoving || !GameManager.Instance.pipesEnabled) yield break;
         isMoving = true;
         
         var playerMovement = player.GetComponent<PlayerMovement>();
