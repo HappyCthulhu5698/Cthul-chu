@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpingPower = 12f;
     private bool isFacingRight = true;
 
-    private float doubleJump = 2;
+    private int doubleJump = 2;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -17,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCounter;
 
     private bool isWallJumping;
-
+    
+    private bool controlsEnabled = true;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -25,24 +25,36 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
+    public void DisableControls()
+    {
+        controlsEnabled = false;
+        doubleJump = 0;
+        coyoteTimeCounter = 0;
+    }
+    
+    public void EnableControls() {controlsEnabled = true;}
+    
     private void Update()
     {
+        if (!controlsEnabled) return;
+        
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
-            doubleJump = 2f;
+            doubleJump = 2;
         }
         else
         {
-            if (coyoteTimeCounter > 0)
+            switch (coyoteTimeCounter)
             {
-                coyoteTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                coyoteTimeCounter = 0;
+                case > 0:
+                    coyoteTimeCounter -= Time.deltaTime;
+                    break;
+                case < 0:
+                    coyoteTimeCounter = 0;
+                    break;
             }
         }
 
@@ -70,19 +82,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
         }
-        if (rb.velocity.y < 0f)
-        {
-            rb.gravityScale = Mathf.Lerp(rb.gravityScale, 6f, 20 * Time.deltaTime);
-        }
-        else
-        {
-            rb.gravityScale = 4f;
-        }
+        rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 6f, 20 * Time.deltaTime) : 4f;
 
     }
 
     private void FixedUpdate()
     {
+        if (!controlsEnabled) return;
+
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -95,12 +102,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
+        if ((!isFacingRight || !(horizontal < 0f)) && (isFacingRight || !(horizontal > 0f))) return;
+        isFacingRight = !isFacingRight;
+        var localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 }
