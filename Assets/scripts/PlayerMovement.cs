@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     private float speed = 8f;
     private float jumpingPower = 12f;
+    private bool facingRight = true; // Track the direction the player is facing
 
     public int doubleJump = 1;
 
@@ -33,7 +35,19 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!controlsEnabled) return;
-        
+
+        float moveDirection = Input.GetAxis("Horizontal");
+
+        // Flip the player based on the direction of movement
+        if (moveDirection > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveDirection < 0 && facingRight)
+        {
+            Flip();
+        }
+
         if (doubleJump <= 0)
         {
             doubleJump = 0;
@@ -87,7 +101,16 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 4f, 20 * Time.deltaTime) : 4f;
     }
+    void Flip()
+    {
+        // Toggle the direction the player is facing
+        facingRight = !facingRight;
 
+        // Rotate the player 180 degrees around the Y-axis
+        Vector3 rotation = transform.eulerAngles;
+        rotation.y += 180;
+        transform.eulerAngles = rotation;
+    }
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
