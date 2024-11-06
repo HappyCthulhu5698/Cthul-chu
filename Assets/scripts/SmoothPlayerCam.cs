@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SmoothPlayerCam : MonoBehaviour
@@ -28,25 +26,30 @@ public class SmoothPlayerCam : MonoBehaviour
 
     public void CallTurn()
     {
-        turnCoroutine = StartCoroutine(FlipYLerp());
+        //turnCoroutine = StartCoroutine(FlipYLerp());
+
+        LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
     }
     
     private IEnumerator FlipYLerp()
     {
-        isFacingRight = !isFacingRight;
         var startRotation = transform.localEulerAngles.y;
-        var endRotation = isFacingRight ? 0f : 180f;
+        var endRotation = DetermineEndRotation();
 
         var elapsedTime = 0f;
-        
         while (elapsedTime < flipYRotationTime)
         {
             elapsedTime += Time.deltaTime;
             
-            var t = elapsedTime / flipYRotationTime;
-            var rotation = Mathf.Lerp(startRotation, endRotation, t);
-            transform.rotation = Quaternion.Euler(0, rotation, 0);
+            var rotation = Mathf.Lerp(startRotation, endRotation, elapsedTime / flipYRotationTime);
+            transform.rotation = Quaternion.Euler(0f, rotation, 0f);
             yield return null;
         }
+    }
+
+    private float DetermineEndRotation()
+    {
+        isFacingRight = !isFacingRight;
+        return isFacingRight ? 0f : 180f;
     }
 }
