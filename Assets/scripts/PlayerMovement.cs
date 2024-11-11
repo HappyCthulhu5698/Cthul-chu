@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed = 8f;
+    public float speed = 8f;
     private float jumpingPower = 12f;
     public bool facingRight; // Track the direction the player is facing
 
@@ -72,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
         {
             doubleJump = 0;
         }
-
+        
         if (Input.GetButton("Horizontal"))
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * 60, rb.velocity.y);
         }
 
         if (IsGrounded())

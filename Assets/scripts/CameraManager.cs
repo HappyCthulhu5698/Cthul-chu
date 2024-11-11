@@ -106,8 +106,6 @@ public class CameraManager : MonoBehaviour
                 case PanDirection.Right:
                     endPos = Vector2.right;
                     break;
-                default:
-                    break;
             }
 
             endPos *= panDistance;
@@ -129,7 +127,7 @@ public class CameraManager : MonoBehaviour
             var panLerp = Vector3.Lerp(startingPos, endPos, elapsedTime / panTime);
             framingTransposer.m_TrackedObjectOffset = panLerp;
 
-            yield return null;
+            yield return null;  
         }
     }
 
