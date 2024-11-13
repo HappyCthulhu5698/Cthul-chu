@@ -1330,7 +1330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8376a2f24220754182a0357ac128691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addedVelocity: {x: 0, y: 10}
+  addedVelocity: {x: 0, y: 30}
+  cooldownTime: 2
+  cooldownTime2: 5
+  teleportPosition: {x: 0.245, y: -9.344}
 --- !u!61 &1158003791
 BoxCollider2D:
   m_ObjectHideFlags: 0
