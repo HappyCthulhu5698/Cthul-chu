@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 8f;
-    public float jumpingPower = 12f;
-    private bool facingRight = true; // Track the direction the player is facing
+
+    private float jumpingPower = 12f;
+    public bool facingRight; // Track the direction the player is facing
 
     public int doubleJump = 1;
 
@@ -23,6 +23,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
+    [SerializeField] private SmoothPlayerCam smoothCam;
+    private float fallSpeedYDampingChangeThreshold;
+
+    private void Start()
+    {
+        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
+    }
+
     public void DisableControls()
     {
         controlsEnabled = false;
@@ -31,7 +39,20 @@ public class PlayerMovement : MonoBehaviour
     }
     
     public void EnableControls() {controlsEnabled = true;}
-    
+
+    private void Update()
+    {
+        if (rb.velocityY < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+        if (rb.velocityY >= 0f && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpedFromPlayerFalling = false;
+            CameraManager.instance.LerpYDamping(false);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!controlsEnabled) return;
@@ -52,10 +73,10 @@ public class PlayerMovement : MonoBehaviour
         {
             doubleJump = 0;
         }
-
+        
         if (Input.GetButton("Horizontal"))
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime * 60, rb.velocity.y);
         }
 
         if (IsGrounded())
@@ -103,9 +124,10 @@ public class PlayerMovement : MonoBehaviour
         facingRight = !facingRight;
 
         // Rotate the player 180 degrees around the Y-axis
-        Vector3 rotation = transform.eulerAngles;
+        var rotation = transform.eulerAngles;
         rotation.y += 180;
         transform.eulerAngles = rotation;
+        smoothCam.CallTurn();
     }
     private bool IsGrounded()
     {
