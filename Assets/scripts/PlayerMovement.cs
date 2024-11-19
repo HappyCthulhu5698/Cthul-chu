@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 8f;
+
     private float jumpingPower = 12f;
     public bool facingRight; // Track the direction the player is facing
 
@@ -96,22 +97,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (IsGrounded() && Input.GetButtonDown("Jump"))
+        if (IsWalled())
         {
-            jumpBufferCounter = jumpBufferTime;
-            jumpBufferCounter -= Time.deltaTime;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && (jumpBufferCounter > 0f))
         {
-            if (jumpBufferCounter > 0f)
+            if (coyoteTimeCounter > 0f && doubleJump > 0)
             {
-                if (coyoteTimeCounter > 0f || doubleJump > 0)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 
-                    doubleJump -= 1;
-                }
+                doubleJump -= 1;
             }
         }
 
@@ -119,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.2f);
         }
-        rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 4f, 20 * Time.deltaTime) : 4f;
+        rb.gravityScale = rb.velocity.y < 0f ? Mathf.Lerp(rb.gravityScale, 3.5f, 20 * Time.deltaTime) : 3.5f;
     }
     void Flip()
     {
@@ -134,6 +131,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private bool IsGrounded()
     {
+        jumpBufferCounter = jumpBufferTime;
+        jumpBufferCounter -= Time.deltaTime;
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
     }
 }
