@@ -4358,7 +4358,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: 11.119496, y: -2.1292162}
+  m_Offset: {x: 10.7441435, y: -2.0794048}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4368,7 +4368,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10.699293, y: 11.057734}
+  m_Size: {x: 11.449999, y: 10.61906}
   m_EdgeRadius: 0
 --- !u!50 &1436985979
 Rigidbody2D:
@@ -4431,7 +4431,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: -4.3960915, y: 1.4368386}
+  m_Offset: {x: -4.544257, y: 1.407939}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4441,7 +4441,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 20.37833, y: 18.189842}
+  m_Size: {x: 20.081999, y: 17.575956}
   m_EdgeRadius: 0
 --- !u!66 &1436985981
 CompositeCollider2D:
@@ -4484,74 +4484,76 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1436985980}
     m_ColliderPaths:
-    - - X: 57930736
-        Y: 105317592
+    - - X: 54967424
+        Y: 101959168
       - X: -145852560
-        Y: 105317592
+        Y: 101959168
       - X: -145852560
-        Y: -76580824
-      - X: 57930736
-        Y: -76580824
+        Y: -73800392
+      - X: 54967424
+        Y: -73800392
   - m_Collider: {fileID: 1436985978}
     m_ColliderPaths:
     - - X: 164691424
-        Y: 33996504
-      - X: 57698496
-        Y: 33996504
-      - X: 57698496
-        Y: -76580832
+        Y: 32301250
+      - X: 50191440
+        Y: 32301250
+      - X: 50191440
+        Y: -73889344
       - X: 164691424
-        Y: -76580832
+        Y: -73889344
   - m_Collider: {fileID: 1436985982}
     m_ColliderPaths:
     - - X: -47439080
-        Y: 105834312
-      - X: -308180576
-        Y: 105834312
-      - X: -308180576
+        Y: 102475888
+      - X: -304777728
+        Y: 102475888
+      - X: -304777728
         Y: -114553720
       - X: -47439080
         Y: -114553720
   - m_Collider: {fileID: 1436985984}
     m_ColliderPaths:
     - - X: -297025152
-        Y: 10298686
+        Y: 7623348
       - X: -548777792
-        Y: 10298686
+        Y: 7623348
       - X: -548777792
-        Y: -56331032
+        Y: -52682848
       - X: -297025152
-        Y: -56331032
+        Y: -52682848
   - m_Collider: {fileID: 1436985983}
     m_ColliderPaths:
-    - - X: -538892736
-        Y: 110446872
-      - X: -790645056
-        Y: 110446872
-      - X: -790645056
-        Y: -86942352
-      - X: -538892736
-        Y: -86942352
+    - - X: -541811200
+        Y: 107285120
+      - X: -788212864
+        Y: 107285120
+      - X: -788212864
+        Y: -84510232
+      - X: -541811200
+        Y: -84510232
   m_CompositePaths:
     m_Paths:
     - - {x: -4.7439375, y: -11.455372}
-      - {x: -4.7438784, y: -7.6580825}
-      - {x: 16.469143, y: -7.658054}
-      - {x: 16.469114, y: 3.3996503}
-      - {x: 5.7930737, y: 3.3996801}
-      - {x: 5.7930446, y: 10.531759}
-      - {x: -4.743908, y: 10.531789}
-      - {x: -4.7439375, y: 10.583431}
-      - {x: -30.818058, y: 10.583402}
-      - {x: -30.818087, y: 1.0298686}
-      - {x: -53.889275, y: 1.029898}
-      - {x: -53.889305, y: 11.044687}
-      - {x: -79.06451, y: 11.044658}
-      - {x: -79.064476, y: -8.694235}
-      - {x: -53.889275, y: -8.694205}
-      - {x: -53.889244, y: -5.6331034}
-      - {x: -30.818058, y: -5.633133}
-      - {x: -30.81803, y: -11.455372}
+      - {x: -4.7438784, y: -7.380039}
+      - {x: 5.019144, y: -7.380069}
+      - {x: 5.019173, y: -7.3889346}
+      - {x: 16.469143, y: -7.388905}
+      - {x: 16.469114, y: 3.230125}
+      - {x: 5.4967422, y: 3.2301545}
+      - {x: 5.496713, y: 10.195917}
+      - {x: -4.743908, y: 10.195947}
+      - {x: -4.7439375, y: 10.247589}
+      - {x: -30.477774, y: 10.24756}
+      - {x: -30.477802, y: 0.7623348}
+      - {x: -54.18112, y: 0.7623642}
+      - {x: -54.181152, y: 10.728512}
+      - {x: -78.82129, y: 10.728482}
+      - {x: -78.82126, y: -8.451023}
+      - {x: -54.18112, y: -8.450994}
+      - {x: -54.181087, y: -5.268285}
+      - {x: -30.477774, y: -5.2683144}
+      - {x: -30.477745, y: -11.455372}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4590,7 +4592,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: -17.780983, y: -0.4359703}
+  m_Offset: {x: -17.61084, y: -0.6038914}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4600,7 +4602,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 26.07415, y: 22.038803}
+  m_Size: {x: 25.733864, y: 21.702961}
   m_EdgeRadius: 0
 --- !u!61 &1436985983
 BoxCollider2D:
@@ -4636,7 +4638,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: -66.47689, y: 1.1752262}
+  m_Offset: {x: -66.501205, y: 1.1387448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4646,7 +4648,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 25.175232, y: 19.738922}
+  m_Size: {x: 24.640167, y: 19.179535}
   m_EdgeRadius: 0
 --- !u!61 &1436985984
 BoxCollider2D:
@@ -4682,7 +4684,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: -42.290146, y: -2.3016174}
+  m_Offset: {x: -42.290146, y: -2.252975}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4692,7 +4694,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 25.175262, y: 6.662972}
+  m_Size: {x: 25.175262, y: 6.0306196}
   m_EdgeRadius: 0
 --- !u!1 &1458146502
 GameObject:
@@ -6192,7 +6194,7 @@ Transform:
   m_GameObject: {fileID: 1963693152}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.640013, y: -2.70878, z: -10}
+  m_LocalPosition: {x: 5.64002, y: -2.41643, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
