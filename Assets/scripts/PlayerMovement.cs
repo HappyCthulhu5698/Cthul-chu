@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 8f;
 
-    private float jumpingPower = 12f;
+    public float jumpingPower = 12f;
     public bool facingRight; // Track the direction the player is facing
 
     public int doubleJump = 1;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         coyoteTimeCounter = 0;
     }
     
-    public void EnableControls() {controlsEnabled = true;}
+    public void EnableControls() {controlsEnabled = true; }
 
     private void Update()
     {
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (coyoteTimeCounter > 0f && doubleJump > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                rb.velocity = new Vector2(0f, jumpingPower);
 
                 doubleJump -= 1;
             }
