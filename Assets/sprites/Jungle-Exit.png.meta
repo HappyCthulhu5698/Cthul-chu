@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Jungle-Exit_0: 6704540927433446735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

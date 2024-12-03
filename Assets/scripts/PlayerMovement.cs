@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
-    [SerializeField] private SmoothPlayerCam smoothCam;
-    private float fallSpeedYDampingChangeThreshold;
+    //[SerializeField] private SmoothPlayerCam smoothCam;
+    //private float fallSpeedYDampingChangeThreshold;
 
     private void Start()
     {
-        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
+        //fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
     }
 
     public void DisableControls()
@@ -42,14 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (rb.velocityY < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        //if (rb.velocityY < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
         {
-            CameraManager.instance.LerpYDamping(true);
+            //CameraManager.instance.LerpYDamping(true);
         }
-        if (rb.velocityY >= 0f && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        //if (rb.velocityY >= 0f && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
         {
-            CameraManager.instance.LerpedFromPlayerFalling = false;
-            CameraManager.instance.LerpYDamping(false);
+            //CameraManager.instance.LerpedFromPlayerFalling = false;
+            //CameraManager.instance.LerpYDamping(false);
         }
     }
 
@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         var rotation = transform.eulerAngles;
         rotation.y += 180;
         transform.eulerAngles = rotation;
-        smoothCam.CallTurn();
+        //smoothCam.CallTurn();
     }
     private bool IsGrounded()
     {

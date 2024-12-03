@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Junlge-Play_0: 336553740013591009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
