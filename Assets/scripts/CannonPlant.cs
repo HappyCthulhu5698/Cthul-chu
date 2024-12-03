@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class CannonPlant : MonoBehaviour
@@ -24,13 +25,13 @@ public class CannonPlant : MonoBehaviour
 
         // Set the initial sprite
         spriteRenderer.sprite = sprite1;
-
     }
     // This method is called when the object collides with another object
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the object collided with the player
-        if (other.gameObject.CompareTag("Player") && !Input.GetKeyDown(KeyCode.S))
+        if (other.gameObject.CompareTag("Player"))
         {
             spriteRenderer.sprite = sprite2;
             playerMV = other.GetComponent<PlayerMovement>();

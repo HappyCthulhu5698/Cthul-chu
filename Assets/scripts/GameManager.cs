@@ -22,11 +22,14 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-    private void UnblockPipes()
+    private void FixedUpdate()
     {
         if (pipesEnabled)
         {
-            Destroy(GetComponent<Collider2D>());
+            foreach (Collider2D c in GetComponents<Collider2D>())
+            {
+                c.enabled = false;
+            }
         }
     }
 }

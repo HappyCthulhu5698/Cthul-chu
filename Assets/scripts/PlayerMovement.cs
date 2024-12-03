@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     
     private bool controlsEnabled = true;
 
+    public bool growMode = false;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -56,6 +58,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!controlsEnabled) return;
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            growMode = true;
+        }
+        else
+        {
+            growMode = false;
+        }
 
         float moveDirection = Input.GetAxis("Horizontal");
 
