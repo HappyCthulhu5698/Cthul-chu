@@ -8,6 +8,9 @@ public class Spikes : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(player);
+        if (other.gameObject == player)
+        {
+            Destroy(player);
+        }
     }
 }

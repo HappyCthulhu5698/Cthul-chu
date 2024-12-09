@@ -12,7 +12,6 @@ public class BreakableTile : MonoBehaviour
     {
         if (wallEnabled && Input.GetKey(KeyCode.J))
         {
-            print("broked");
             gameObject.GetComponent<TilemapRenderer>().enabled = false;
             gameObject.GetComponent<TilemapCollider2D>().enabled = false;
             particleSystem.GetComponent<ParticleSystem>().Play();
